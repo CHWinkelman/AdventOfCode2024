@@ -30,7 +30,47 @@ class Solution
   end
 
   def part2(input)
-    nil
+    input.count do |line|
+      levels = line.split.map {|num| num.to_i }
+      get_levels_and_directions(levels)
+    end
+  end
+
+  def get_levels_and_directions(levels)
+    step_differences = levels[0..-2].zip(levels[1..-1]).
+      map { |x, y| y - x } # positive: increasing, negative: decreasing
+    wrong_change = []
+    inc = []
+    dec = []
+    step_differences.each_with_index do |diff, position|
+      direction = d / d.abs
+      if direction != 0
+        direction == 1 ? inc << position : dec << position
+        if diff.abs > 3
+          bad_levels << position
+        end
+      else
+        bad_levels << position
+      end
+    end
+
+    if inc.count > dec.count
+
+
+
+      #
+      #      -1
+      #    3    -1     2     1
+      # 1  |  4  |  3  |  5  |  6
+
+      #
+      #   -1     2     1     3
+      # 5  |  4  |  6  |  7  |  10
+
+
+    end
+
+
   end
 
   def sample
