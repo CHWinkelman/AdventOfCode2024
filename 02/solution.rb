@@ -32,8 +32,16 @@ class Solution
   def part2(input)
     input.count do |line|
       levels = line.split.map {|num| num.to_i }
-      get_levels_and_directions(levels)
+      check_levels(levels)
     end
+  end
+
+  def check_levels(levels)
+    pairs = levels[0..-2].zip(levels[1..-1])
+    pair_diffs = pairs.map { |x, y| y - x }
+
+    dirs = Hash.new(0)
+    pairs.each {|x, y| dirs[y <=> x] += 1 }
   end
 
   def get_levels_and_directions(levels)
